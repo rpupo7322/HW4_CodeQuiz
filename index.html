@@ -17,8 +17,10 @@
         <p>Try to answer the following questions within the time
             Limit. Keep in mind the incorrect answers will penalize your score-time
             by ten-seconds!</p>
+        <button id="start">Start</button>
     </div>
     <div id = 'questions'>
+        <h2 id='questionTitle'></h2>
         <p id='currentQuestion'></p>
         <ol id='answers'>
             <li id = 'q1'></li>
@@ -26,11 +28,16 @@
             <li id = 'q3'></li>
             <li id = 'q4'></li>
         </ol>
-        <p id = 'correct'>Correct!</p>
-        <p id = 'wrong'>Wrong!</p>
+        <p id = 'correct'></p>
+    </div>
+    <div id = results>
+        <h2>All done!</h2>
+        <p id='score'></p>
+        <textarea id="textarea" placeholder="Enter Initials" ></textarea>
     </div>
     <div id = 'highscores'>
 
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

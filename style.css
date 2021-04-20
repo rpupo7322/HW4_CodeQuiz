@@ -1,6 +1,6 @@
 
 
-#correct, #wrong {
+#correct {
     border-top: 2px solid grey;
     padding-top: 3px;
     /* display: none; */
@@ -24,6 +24,9 @@
     width: 300px;
 }
 
-#questions span {
-    margin-bottom: 5px;
+#questions li:hover {
+    box-shadow: inset 0px 0px 8px var(red), 0 0 15px var(grey);
+    cursor: pointer;
+    opacity: .8;
 }
+
