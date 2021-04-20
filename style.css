@@ -1,0 +1,29 @@
+
+
+#correct, #wrong {
+    border-top: 2px solid grey;
+    padding-top: 3px;
+    /* display: none; */
+}
+
+
+
+#questions {
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -250px;
+}
+
+#questions li {
+    background-color: purple;
+    border-radius: 20px;
+    border: 10px;
+    padding: 5px;
+    margin-bottom: 5px;
+    width: 300px;
+}
+
+#questions span {
+    margin-bottom: 5px;
+}
