@@ -6,7 +6,9 @@
     /* display: none; */
 }
 
-
+#questions, #results, #highscores {
+    display: none;
+}
 
 #questions {
     width: 500px;
@@ -20,8 +22,10 @@
     border-radius: 20px;
     border: 10px;
     padding: 5px;
+    padding-left: 20px;
     margin-bottom: 5px;
     width: 300px;
+    list-style-type: none;
 }
 
 #questions li:hover {
