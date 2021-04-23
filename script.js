@@ -3,7 +3,9 @@ var open = document.querySelector('#opener');
 var quest = document.querySelector('#questions');
 var result = document.querySelector('#results');
 var highscores = document.querySelector('#highscores');
+var scores = document.querySelector('#scoresList');
 var viewHS = document.querySelector('#viewHS');
+var textArea = document.querySelector('#textarea');
 var cq = document.querySelector('#currentQuestion');
 var q1 = document.querySelector('#q1');
 var q2 = document.querySelector('#q2');
@@ -26,17 +28,21 @@ var questions = ['Commonly used Data Types do not include:',
     'String values must be enclosed within _______ when being assigned to variables.',
     'A very useful tool used during development and debugging for printing content to the debugger is:']
 var startEl = document.querySelector('#start');
+var startEl2 = document.querySelector('#start2');
+var clear = document.querySelector('#clear');
 var timeForDelay;
 var currentAnswer;
 
 
 
 startEl.addEventListener('click', start)
+startEl2.addEventListener('click', start)
 
 function start() {
-  console.log("test")
+  console.log("test");
+  // localStorage.clear();
   beginCountdown();
-  currentSlide += 1;
+  currentSlide = 1;
   changeSlide();
   console.log(currentSlide)
 
@@ -48,25 +54,25 @@ function changeSlide(){
     quest.style.display = "none";
     result.style.display = "none";
     highscores.style.display = "none";
-  } else if (currentSlide > 0 && currentSlide < 7) {
+  } else if (currentSlide > 0 && currentSlide < 6) {
     open.style.display = "none";
     result.style.display = "none";
     highscores.style.display = "none";
     quest.style.display = "block";
     currentAnswer = false;
     questionDisplay();
-  } else if (currentSlide == 7) {
+  } else if (currentSlide == 6) {
     open.style.display = "none";
     result.style.display = "block";
     highscores.style.display = "none";
     quest.style.display = "none";
     questionDisplay();
-  } else if (currentSlide == 8) {
+  } else if (currentSlide == 7) {
     open.style.display = "none";
     result.style.display = "none";
-    highscores.style.display = "block";
     quest.style.display = "none";
-    questionDisplay();
+    populateHighScores();
+    highscores.style.display = "block";
   }
 }
 
@@ -137,10 +143,51 @@ function testAnswr (question, answer) {
 function displayCorrect (){
   correct.style.display = "block";
   correct.textContent = 'Correct!'
+  setTimeout(function(){
+    correct.style.display = "none";
+    },1000);
 }
 function displayWrong() {
   correct.style.display = "block";
   correct.textContent = 'Wrong!'
+  secondsLeft -= 10;
+  setTimeout(function(){
+    correct.style.display = "none";
+    },1000);
+}
+
+function addHighScores(userName){
+  var existingScores = JSON.parse(localStorage.getItem("allScores"));
+  if(existingScores == null) {existingScores = [];}
+  var entry = {
+      "name": userName,
+      "score": secondsLeft
+  };
+  // Save allEntries back to local storage
+  existingScores.push(entry);
+  localStorage.setItem("allScores", JSON.stringify(existingScores));
+}
+
+function populateHighScores(){
+  while(scores.firstChild) {
+    scores.removeChild(scores.firstChild)
+  }
+  var existingScores = JSON.parse(localStorage.getItem("allScores"));
+  if(existingScores == null) {existingScores = [];}
+
+  var sortedScores = existingScores.sort(function(a, b){
+    return b.score - a.score
+  });
+  console.log(sortedScores);
+
+  for (i=0;i < sortedScores.length;i++) {
+    var score = sortedScores[i];
+    console.log(score)
+    var li = document.createElement("li");
+    li.textContent = score.name + ':   ' + score.score;
+    scores.appendChild(li);
+  }
+
 }
 
 q1.addEventListener("click", function () {
@@ -188,9 +235,22 @@ q4.addEventListener("click", function () {
   console.log(currentSlide)
 });
 viewHS.addEventListener("click", function () {
-  currentSlide = 0;
+  currentSlide = 8;
   changeSlide();
   console.log(currentSlide)
+});
+submit.addEventListener("click", function () {
+
+  addHighScores(textArea.value)
+  currentSlide += 1;
+  changeSlide();
+  textArea.value = '';
+  console.log(currentSlide)
+});
+clear.addEventListener("click", function () {
+  localStorage.clear();
+  changeSlide();
+
 });
 
 function beginCountdown() {
@@ -199,12 +259,19 @@ function beginCountdown() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
       time.textContent = 'Time:   ' + secondsLeft ;
-      if(secondsLeft === 0 || currentSlide > 6 || currentSlide == 0) {
+      if(secondsLeft === 0 && currentSlide != 6) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
-        gameState = false;
-        // console.log("gamestate: "+ gameState)
+        currentSlide = 6;
+        changeSlide();
+
+        
+      } else if(secondsLeft === 0 || currentSlide > 6 || currentSlide == 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+
         
       }    
+
     }, 1000);
   }
