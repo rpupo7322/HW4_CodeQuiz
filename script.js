@@ -235,7 +235,7 @@ q4.addEventListener("click", function () {
   console.log(currentSlide)
 });
 viewHS.addEventListener("click", function () {
-  currentSlide = 8;
+  currentSlide = 7;
   changeSlide();
   console.log(currentSlide)
 });
@@ -261,13 +261,15 @@ function beginCountdown() {
       time.textContent = 'Time:   ' + secondsLeft ;
       if(secondsLeft === 0 && currentSlide != 6) {
         // Stops execution of action at set interval
+        console.log('condition 1')
         clearInterval(timerInterval);
         currentSlide = 6;
         changeSlide();
 
         
-      } else if(secondsLeft === 0 || currentSlide > 6 || currentSlide == 0) {
+      } else if(secondsLeft === 0 || currentSlide > 5 || currentSlide == 0) {
         // Stops execution of action at set interval
+        console.log('condition 2')
         clearInterval(timerInterval);
 
         
