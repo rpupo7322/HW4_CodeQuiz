@@ -25,4 +25,4 @@ Screenshots of the webpage can be found below:
 
 
 Highscores in local storage:
-![alt text](http://url/to/img.png)
+![Scores in Local Storage](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/LocalStorage_scores.PNG)
