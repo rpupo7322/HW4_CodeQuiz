@@ -15,9 +15,10 @@ This is the fourth homework, showing a multiple choice quiz on coding topics. It
 
 Screenshots of the webpage can be found below:
 1. Title page
-
+![Title page](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/Title%20Page.PNG)
 2. A sample question page
-
+![A sample question page](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/A%20question%20page.PNG)
 3. Score submission page
-
+![Score submission page](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/Score%20submission%20page.PNG)
 4. Highscores page
+![Highscores page](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/Highscores%20Page.PNG)
