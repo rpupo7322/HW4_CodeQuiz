@@ -22,3 +22,7 @@ Screenshots of the webpage can be found below:
 ![Score submission page](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/Score%20submission%20page.PNG)
 4. Highscores page
 ![Highscores page](https://github.com/rpupo7322/HW4_CodeQuiz/blob/main/WebsitePics/Highscores%20Page.PNG)
+
+
+Highscores in local storage:
+![alt text](http://url/to/img.png)
