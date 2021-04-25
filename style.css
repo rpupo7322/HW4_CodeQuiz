@@ -1,16 +1,33 @@
 
 
+/* header {
+    display: flex;
+    justify-content: space-between;
+} */
+
+header a, header p{
+    display: inline-block;
+    /* flex-wrap: wrap; */
+}
+header p {
+    /* position: absolute; */
+    /* right: 20px; */
+    float: right;
+    margin-top: 4px;
+}
+
+
 #correct {
     border-top: 2px solid grey;
     padding-top: 3px;
-    /* display: none; */
+    display: none;
 }
 
 #questions, #results, #highscores {
     display: none;
 }
 
-#questions {
+#questions, #opener, #results, #highscores {
     width: 500px;
     position: absolute;
     left: 50%;
@@ -19,6 +36,7 @@
 
 #questions li {
     background-color: purple;
+    color: white;
     border-radius: 20px;
     border: 10px;
     padding: 5px;
@@ -34,3 +52,42 @@
     opacity: .8;
 }
 
+button {
+    background-color: purple;
+    color: white;
+}
+
+#results, #highscores {
+    margin-top: 30px;
+    text-align: center;
+    justify-content: space-between;
+
+}
+
+#submit, #textarea {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#textarea {
+    margin-left: 60px;
+}
+
+#submit {
+    margin-left: 280px;
+    margin-top: -22px;
+}
+
+#highscores li {
+    margin-left: 60px;
+    text-align: left;
+
+}
+
+#highscores button {
+    margin: 10px;
+}
+
+#questions {
+    margin-top: 30px;
+}

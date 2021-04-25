@@ -3,6 +3,7 @@ var open = document.querySelector('#opener');
 var quest = document.querySelector('#questions');
 var result = document.querySelector('#results');
 var highscores = document.querySelector('#highscores');
+var theScore = document.querySelector('#score');
 var scores = document.querySelector('#scoresList');
 var viewHS = document.querySelector('#viewHS');
 var textArea = document.querySelector('#textarea');
@@ -20,7 +21,6 @@ var answers = {
     q3: ['1. Numbers and strings', '2. Other arrays', '3. Booleans', '4. All of the above'],
     q4: ['1. Commas', '2. Curly brackets', '3. Quotes', '4. Parenthesis'],
     q5: ['1. Javascript', '2. Terminal/bash', '3. For loops', '4. Console.log']
-
 }
 var questions = ['Commonly used Data Types do not include:',
     'The condition in an if/else statement is enclosed within _______.',
@@ -30,22 +30,82 @@ var questions = ['Commonly used Data Types do not include:',
 var startEl = document.querySelector('#start');
 var startEl2 = document.querySelector('#start2');
 var clear = document.querySelector('#clear');
-var timeForDelay;
 var currentAnswer;
-
-
 
 startEl.addEventListener('click', start)
 startEl2.addEventListener('click', start)
+q1.addEventListener("click", function () {
+  testAnswr(currentSlide, 1)
+  if (currentAnswer) {
+    displayCorrect()
+  } else {
+    displayWrong()
+  }
+  currentSlide += 1;
+  changeSlide();
+  console.log(currentSlide)
+});
+q2.addEventListener("click", function () {
+  testAnswr(currentSlide, 2)
+  if (currentAnswer) {
+    displayCorrect()
+  } else {
+    displayWrong()
+  }
+  currentSlide += 1;
+  changeSlide();
+  console.log(currentSlide)
+});
+q3.addEventListener("click", function () {
+  testAnswr(currentSlide, 3)
+  if (currentAnswer) {
+    displayCorrect()
+  } else {
+    displayWrong()
+  }
+  currentSlide += 1;
+  changeSlide();
+  console.log(currentSlide)
+});
+q4.addEventListener("click", function () {
+  testAnswr(currentSlide, 4)
+  if (currentAnswer) {
+    displayCorrect()
+  } else {
+    displayWrong()
+  }
+  currentSlide += 1;
+  changeSlide();
+  console.log(currentSlide)
+});
+viewHS.addEventListener("click", function () {
+  currentSlide = 7;
+  changeSlide();
+  console.log(currentSlide)
+});
+submit.addEventListener("click", function () {
+  if (testSubmit(textArea.value)) {
+    addHighScores(textArea.value)
+    currentSlide += 1;
+    changeSlide();
+    textArea.value = '';
+  } else {
+    alert('Please enter initials to submit a score! PLEASE!')
+  }
+});
+clear.addEventListener("click", function () {
+  localStorage.clear();
+  changeSlide();
+});
+
+
+
+
 
 function start() {
-  console.log("test");
-  // localStorage.clear();
   beginCountdown();
   currentSlide = 1;
   changeSlide();
-  console.log(currentSlide)
-
 }
 
 
@@ -66,7 +126,7 @@ function changeSlide(){
     result.style.display = "block";
     highscores.style.display = "none";
     quest.style.display = "none";
-    questionDisplay();
+    theScore.textContent = 'Your score is:  ' + secondsLeft;
   } else if (currentSlide == 7) {
     open.style.display = "none";
     result.style.display = "none";
@@ -178,11 +238,9 @@ function populateHighScores(){
   var sortedScores = existingScores.sort(function(a, b){
     return b.score - a.score
   });
-  console.log(sortedScores);
 
   for (i=0;i < sortedScores.length;i++) {
     var score = sortedScores[i];
-    console.log(score)
     var li = document.createElement("li");
     li.textContent = score.name + ':   ' + score.score;
     scores.appendChild(li);
@@ -190,68 +248,14 @@ function populateHighScores(){
 
 }
 
-q1.addEventListener("click", function () {
-  testAnswr(currentSlide, 1)
-  if (currentAnswer) {
-    displayCorrect()
-  } else {
-    displayWrong()
-  }
-  currentSlide += 1;
-  changeSlide();
-  console.log(currentSlide)
-});
-q2.addEventListener("click", function () {
-  testAnswr(currentSlide, 2)
-  if (currentAnswer) {
-    displayCorrect()
-  } else {
-    displayWrong()
-  }
-  currentSlide += 1;
-  changeSlide();
-  console.log(currentSlide)
-});
-q3.addEventListener("click", function () {
-  testAnswr(currentSlide, 3)
-  if (currentAnswer) {
-    displayCorrect()
-  } else {
-    displayWrong()
-  }
-  currentSlide += 1;
-  changeSlide();
-  console.log(currentSlide)
-});
-q4.addEventListener("click", function () {
-  testAnswr(currentSlide, 4)
-  if (currentAnswer) {
-    displayCorrect()
-  } else {
-    displayWrong()
-  }
-  currentSlide += 1;
-  changeSlide();
-  console.log(currentSlide)
-});
-viewHS.addEventListener("click", function () {
-  currentSlide = 7;
-  changeSlide();
-  console.log(currentSlide)
-});
-submit.addEventListener("click", function () {
 
-  addHighScores(textArea.value)
-  currentSlide += 1;
-  changeSlide();
-  textArea.value = '';
-  console.log(currentSlide)
-});
-clear.addEventListener("click", function () {
-  localStorage.clear();
-  changeSlide();
-
-});
+function testSubmit(a) {
+  if (a == null || a == '') {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 function beginCountdown() {
     secondsLeft = 75;
@@ -261,19 +265,12 @@ function beginCountdown() {
       time.textContent = 'Time:   ' + secondsLeft ;
       if(secondsLeft === 0 && currentSlide != 6) {
         // Stops execution of action at set interval
-        console.log('condition 1')
         clearInterval(timerInterval);
         currentSlide = 6;
         changeSlide();
-
-        
       } else if(secondsLeft === 0 || currentSlide > 5 || currentSlide == 0) {
         // Stops execution of action at set interval
-        console.log('condition 2')
         clearInterval(timerInterval);
-
-        
       }    
-
     }, 1000);
   }
